@@ -26,7 +26,7 @@
 - ispell/aspell
 
 
-## How to set `ac-ispell` completion source
+## How to use `ac-ispell` completion source
 
 You can use `ac-ispell` source to push `ac-source-ispell` to `ac-sources`
 in major/minor mode hook such as `mail-mode-hook` or `git-commit-mode-hook`
