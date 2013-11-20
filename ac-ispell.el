@@ -36,10 +36,18 @@
   :type 'integer
   :group 'ac-ispell)
 
+(defun ac-ispell--case-function (input)
+  (let ((case-fold-search nil))
+    (cond ((string-match-p "\\`[A-Z]\\{2\\}" input) 'upcase)
+          ((string-match-p "\\`[A-Z]\\{1\\}" input) 'capitalize)
+          (t 'identity))))
+
 (defun ac-ispell--candidates ()
-  (let ((input (downcase (substring ac-prefix 0 ac-ispell-requires))))
+  (let ((input (downcase ac-prefix))
+        (case-func (ac-ispell--case-function ac-prefix)))
     (when (string-match-p "\\`[a-z]+\\'" input)
-      (lookup-words (concat input "*") ispell-complete-word-dict))))
+      (mapcar case-func
+              (lookup-words (concat input "*") ispell-complete-word-dict)))))
 
 ;;;###autoload
 (defun ac-ispell-setup ()
