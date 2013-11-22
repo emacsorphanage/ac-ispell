@@ -69,7 +69,16 @@
               (lookup-words (concat input "*") ispell-complete-word-dict)))))
 
 ;;;###autoload
+(defun ac-ispell-ac-setup ()
+  "Add `ac-source-ispell' to `ac-sources' and enable `auto-complete' mode"
+  (interactive)
+  (add-to-list 'ac-sources 'ac-source-ispell)
+  (unless auto-complete-mode
+    (auto-complete-mode +1)))
+
+;;;###autoload
 (defun ac-ispell-setup ()
+  "Declare auto-complete source based on `ac-ispell-requires'"
   (interactive)
 
   (ac-define-source ispell
