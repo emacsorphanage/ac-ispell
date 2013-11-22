@@ -28,15 +28,9 @@
 
 ## How to use `ac-ispell` completion source
 
-You can use `ac-ispell` source to push `ac-source-ispell` to `ac-sources`
-in major/minor mode hook such as `mail-mode-hook` or `git-commit-mode-hook`
-like configuration below.
+You can call `ac-ispell-ac-setup` at hooks.
 
-```
-(defun my/some-mode-hook ()
-  (auto-complete-mode +1) ;; if auto-complete-mode is not enabled in some-mode
-  (add-to-list 'ac-sources 'ac-source-ispell))
-
+```common-lisp
 (add-hook 'some-mode-hook 'my/some-mode-hook)
 ```
 
@@ -46,7 +40,14 @@ like configuration below.
 #### `ac-ispell-setup`
 
 Declare ispell/aspell `auto-complete` source based on `ac-ispell-requires`.
+The source name of auto-complete is `ac-source-ispell`.
 This command must be called at the beginning.
+
+
+#### `ac-ispell-ac-setup`
+
+Setup ispell `auto-complete` source and enable `auto-complete-mode` if
+`auto-complete` is not enabled.
 
 
 ## Customize Variables
@@ -70,9 +71,6 @@ I recommend to use `custom-set-variable` for setting this value.
   '(progn
       (ac-ispell-setup)))
 
-(defun my/enable-ac-ispell ()
-  (add-to-list 'ac-sources 'ac-source-ispell))
-
-(add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
-(add-hook 'mail-mode-hook 'my/enable-ac-ispell)
+(add-hook 'git-commit-mode-hook 'ac-ispell-ac-setup)
+(add-hook 'mail-mode-hook 'ac-ispell-ac-setup)
 ```
