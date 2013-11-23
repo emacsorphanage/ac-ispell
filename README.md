@@ -62,7 +62,7 @@ I recommend to use `custom-set-variable` for setting this value.
 
 ## Sample Configuration
 
-```elisp
+```lisp
 ;; Completion words longer than 4 characters
 (custom-set-variable
   '(ac-ispell-requires 4))
