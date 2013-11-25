@@ -64,7 +64,7 @@ I recommend to use `custom-set-variable` for setting this value.
 
 ```lisp
 ;; Completion words longer than 4 characters
-(custom-set-variable
+(custom-set-variables
   '(ac-ispell-requires 4))
 
 (eval-after-load "auto-complete"
