@@ -28,7 +28,7 @@
 ;; To use this package, add following code to your init.el or .emacs
 ;;
 ;;    ;; Completion words longer than 4 characters
-;;    (custom-set-variable
+;;    (custom-set-variables
 ;;      '(ac-ispell-requires 4))
 ;;
 ;;    (eval-after-load "auto-complete"
