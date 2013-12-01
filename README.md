@@ -50,6 +50,15 @@ Setup ispell `auto-complete` source and enable `auto-complete-mode` if
 `auto-complete` is not enabled.
 
 
+## Set Other Dictionary
+
+You can set other dictionary by setting `ispell-complete-word-dict`.
+
+```lisp
+(setq ispell-complete-word-dict "DictionaryFilePath")
+```
+
+
 ## Customize Variables
 
 #### `ac-ispell-requires`(Default `3`)
