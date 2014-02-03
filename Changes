@@ -1,10 +1,13 @@
 Revision history for ac-ispell.el
 
-Revision 0.03  2012/11/25 syohex
+Revision 0.04  2014/02/03 syohex
+  - Fix byte-compiling for Emacs 24.4
+
+Revision 0.03  2013/11/25 syohex
   - Fix documentation(Thanks syl20bnr)
 
-Revision 0.02  2012/11/22 syohex
+Revision 0.02  2013/11/22 syohex
   - Add interface for setting up
 
-Revision 0.01  2012/11/20 syohex
+Revision 0.01  2013/11/20 syohex
   - Initial version
