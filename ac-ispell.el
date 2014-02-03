@@ -63,10 +63,13 @@
 
 (defun ac-ispell--candidates ()
   (let ((input (downcase ac-prefix))
-        (case-func (ac-ispell--case-function ac-prefix)))
+        (case-func (ac-ispell--case-function ac-prefix))
+        (lookup-func (if (fboundp 'ispell-lookup-words)
+                         'ispell-lookup-words
+                       'lookup-words)))
     (when (string-match-p "\\`[a-z]+\\'" input)
       (mapcar case-func
-              (lookup-words (concat input "*") ispell-complete-word-dict)))))
+              (funcall lookup-func (concat input "*") ispell-complete-word-dict)))))
 
 ;;;###autoload
 (defun ac-ispell-ac-setup ()
