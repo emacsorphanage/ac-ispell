@@ -1,5 +1,9 @@
 Revision history for ac-ispell.el
 
+Revision 0.05  2014/02/15 syohex
+  - Implement candidates cache
+    Thanks igjit for good suggestion
+
 Revision 0.04  2014/02/03 syohex
   - Fix byte-compiling for Emacs 24.4
 

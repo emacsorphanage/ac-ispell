@@ -1,10 +1,10 @@
 ;;; ac-ispell.el --- ispell completion source for auto-complete
 
-;; Copyright (C) 2013 by Syohei YOSHIDA
+;; Copyright (C) 2014 by Syohei YOSHIDA
 
 ;; Author: Syohei YOSHIDA <syohex@gmail.com>
 ;; URL: https://github.com/syohex/emacs-ac-ispell
-;; Version: 0.04
+;; Version: 0.05
 ;; Package-Requires: ((auto-complete "1.4"))
 
 ;; This program is free software; you can redistribute it and/or modify
