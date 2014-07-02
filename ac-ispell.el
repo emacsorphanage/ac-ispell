@@ -29,7 +29,8 @@
 ;;
 ;;    ;; Completion words longer than 4 characters
 ;;    (custom-set-variables
-;;      '(ac-ispell-requires 4))
+;;      '(ac-ispell-requires 4)
+;;      '(ac-ispell-fuzzy-limit 4))
 ;;
 ;;    (eval-after-load "auto-complete"
 ;;      '(progn
@@ -47,11 +48,11 @@
 (require 'ispell)
 
 (defgroup ac-ispell nil
-  "Auto completion with ispell"
+  "Auto completion with ispell."
   :group 'auto-complete)
 
 (defcustom ac-ispell-requires 3
-  "Minimum input for starting completion"
+  "Minimum input for starting completion."
   :type 'integer
   :group 'ac-ispell)
 
