@@ -31,7 +31,7 @@
 You can call `ac-ispell-ac-setup` at hooks.
 
 ```common-lisp
-(add-hook 'some-mode-hook 'my/some-mode-hook)
+(add-hook 'some-mode-hook 'ac-ispell-ac-setup)
 ```
 
 
