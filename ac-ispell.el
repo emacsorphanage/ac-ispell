@@ -118,7 +118,8 @@
 (defun ac-ispell-ac-setup ()
   "Add `ac-source-ispell' to `ac-sources' and enable `auto-complete' mode"
   (interactive)
-  (add-to-list 'ac-sources 'ac-source-ispell-fuzzy)
+  (unless (eq ac-ispell-fuzzy-limit 0)
+    (add-to-list 'ac-sources 'ac-source-ispell-fuzzy))
   (add-to-list 'ac-sources 'ac-source-ispell)
   (unless auto-complete-mode
     (auto-complete-mode +1)))
