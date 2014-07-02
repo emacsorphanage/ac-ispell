@@ -97,8 +97,7 @@
         (mapcar case-func candidates)))))
 
 (defun ac-ispell--correct-word (word)
-  (when (and ispell-async-processp
-             (< 0 (length word)))
+  (when (and ispell-async-processp (> (length word) 0))
     (ispell-set-spellchecker-params)
     (ispell-accept-buffer-local-defs)
     (ispell-send-string "%\n")
@@ -108,8 +107,8 @@
                (accept-process-output ispell-process nil nil 1))
              (not (string= "" (car ispell-filter)))))
     (let ((poss (ispell-parse-output (cadr ispell-filter))))
-      (if (listp poss)
-          (nth 2 poss)))))
+      (when (listp poss)
+        (nth 2 poss)))))
 
 (defun ac-ispell--fuzzy-candidates ()
   (ac-ispell--correct-word ac-prefix))
@@ -118,7 +117,7 @@
 (defun ac-ispell-ac-setup ()
   "Add `ac-source-ispell' to `ac-sources' and enable `auto-complete' mode"
   (interactive)
-  (unless (eq ac-ispell-fuzzy-limit 0)
+  (when (> ac-ispell-fuzzy-limit 0)
     (add-to-list 'ac-sources 'ac-source-ispell-fuzzy))
   (add-to-list 'ac-sources 'ac-source-ispell)
   (unless auto-complete-mode
