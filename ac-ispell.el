@@ -55,7 +55,7 @@
   :type 'integer
   :group 'ac-ispell)
 
-(defcustom ac-ispell-fuzzy-limit 6
+(defcustom ac-ispell-fuzzy-limit 2
   "Limit number of candidates for fuzzy source."
   :type 'integer
   :group 'ac-ispell)
