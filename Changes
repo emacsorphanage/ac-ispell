@@ -1,5 +1,9 @@
 Revision history for ac-ispell.el
 
+Revision 0.06  2014/07/03 syohex
+  - Implement fuzzy completion feature
+    Thanks igjit
+
 Revision 0.05  2014/02/15 syohex
   - Implement candidates cache
     Thanks igjit for good suggestion
