@@ -55,14 +55,14 @@
   :type 'integer
   :group 'ac-ispell)
 
-(defcustom ac-ispell-correction-limit 6
-  "Limit number of candidates for correction source."
+(defcustom ac-ispell-fuzzy-limit 6
+  "Limit number of candidates for fuzzy source."
   :type 'integer
   :group 'ac-ispell)
 
-(defface ac-ispell-correction-candidate-face
+(defface ac-ispell-fuzzy-candidate-face
   '((t (:inherit ac-candidate-face :foreground "red")))
-  "Face for correction candidate."
+  "Face for fuzzy candidate."
   :group 'ac-ispell)
 
 (defvar ac-ispell--cache nil)
@@ -111,14 +111,14 @@
       (if (listp poss)
           (nth 2 poss)))))
 
-(defun ac-ispell--correction-candidates ()
+(defun ac-ispell--fuzzy-candidates ()
   (ac-ispell--correct-word ac-prefix))
 
 ;;;###autoload
 (defun ac-ispell-ac-setup ()
   "Add `ac-source-ispell' to `ac-sources' and enable `auto-complete' mode"
   (interactive)
-  (add-to-list 'ac-sources 'ac-source-ispell-correction)
+  (add-to-list 'ac-sources 'ac-source-ispell-fuzzy)
   (add-to-list 'ac-sources 'ac-source-ispell)
   (unless auto-complete-mode
     (auto-complete-mode +1)))
@@ -132,13 +132,13 @@
     `((candidates . ac-ispell--candidates)
       (requires . ,ac-ispell-requires)
       (symbol . "s")))
-  (ac-define-source ispell-correction
-    `((candidates . ac-ispell--correction-candidates)
+  (ac-define-source ispell-fuzzy
+    `((candidates . ac-ispell--fuzzy-candidates)
       (match . (lambda (prefix candidates) candidates))
       (requires . ,ac-ispell-requires)
-      (limit . ,ac-ispell-correction-limit)
+      (limit . ,ac-ispell-fuzzy-limit)
       (symbol . "s")
-      (candidate-face . ac-ispell-correction-candidate-face))))
+      (candidate-face . ac-ispell-fuzzy-candidate-face))))
 
 (provide 'ac-ispell)
 
