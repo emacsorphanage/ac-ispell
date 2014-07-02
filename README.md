@@ -69,12 +69,19 @@ You should change this value before calling `ac-ispell-setup`.
 I recommend to use `custom-set-variables` for setting this value.
 
 
+#### `ac-ispell-fuzzy-limit`(Default `2`)
+
+Number of fuzzy completion candidates. If this value is `0`,
+fuzzy completion is disabled.
+
+
 ## Sample Configuration
 
 ```lisp
 ;; Completion words longer than 4 characters
 (custom-set-variables
-  '(ac-ispell-requires 4))
+  '(ac-ispell-requires 4)
+  '(ac-ispell-fuzzy-limit 2))
 
 (eval-after-load "auto-complete"
   '(progn
