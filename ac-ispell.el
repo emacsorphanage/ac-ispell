@@ -55,6 +55,16 @@
   :type 'integer
   :group 'ac-ispell)
 
+(defcustom ac-ispell-fuzzy-limit 2
+  "Limit number of candidates for fuzzy source."
+  :type 'integer
+  :group 'ac-ispell)
+
+(defface ac-ispell-fuzzy-candidate-face
+  '((t (:inherit ac-candidate-face :foreground "red")))
+  "Face for fuzzy candidate."
+  :group 'ac-ispell)
+
 (defvar ac-ispell--cache nil)
 
 (defun ac-ispell--case-function (input)
@@ -86,10 +96,30 @@
                             (ac-ispell--lookup-candidates lookup-func input))))
         (mapcar case-func candidates)))))
 
+(defun ac-ispell--correct-word (word)
+  (when (and ispell-async-processp
+             (< 0 (length word)))
+    (ispell-set-spellchecker-params)
+    (ispell-accept-buffer-local-defs)
+    (ispell-send-string "%\n")
+    (ispell-send-string (concat "^" word "\n"))
+    (while (progn
+             (with-local-quit
+               (accept-process-output ispell-process nil nil 1))
+             (not (string= "" (car ispell-filter)))))
+    (let ((poss (ispell-parse-output (cadr ispell-filter))))
+      (if (listp poss)
+          (nth 2 poss)))))
+
+(defun ac-ispell--fuzzy-candidates ()
+  (ac-ispell--correct-word ac-prefix))
+
 ;;;###autoload
 (defun ac-ispell-ac-setup ()
   "Add `ac-source-ispell' to `ac-sources' and enable `auto-complete' mode"
   (interactive)
+  (unless (eq ac-ispell-fuzzy-limit 0)
+    (add-to-list 'ac-sources 'ac-source-ispell-fuzzy))
   (add-to-list 'ac-sources 'ac-source-ispell)
   (unless auto-complete-mode
     (auto-complete-mode +1)))
@@ -102,7 +132,14 @@
   (ac-define-source ispell
     `((candidates . ac-ispell--candidates)
       (requires . ,ac-ispell-requires)
-      (symbol . "s"))))
+      (symbol . "s")))
+  (ac-define-source ispell-fuzzy
+    `((candidates . ac-ispell--fuzzy-candidates)
+      (match . (lambda (prefix candidates) candidates))
+      (requires . ,ac-ispell-requires)
+      (limit . ,ac-ispell-fuzzy-limit)
+      (symbol . "s")
+      (candidate-face . ac-ispell-fuzzy-candidate-face))))
 
 (provide 'ac-ispell)
 
