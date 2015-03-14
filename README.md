@@ -74,6 +74,10 @@ I recommend to use `custom-set-variables` for setting this value.
 Number of fuzzy completion candidates. If this value is `0`,
 fuzzy completion is disabled.
 
+#### `ac-ispell-cache-size`(Default `20`)
+
+Cache size.
+
 
 ## Sample Configuration
 
