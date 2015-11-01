@@ -1,4 +1,4 @@
-# ac-ispell.el
+# ac-ispell.el [![melpa badge][melpa-badge]][melpa-link] [![melpa stable badge][melpa-stable-badge]][melpa-stable-link]
 
 ## Introduction
 
@@ -17,6 +17,15 @@
 ### Capitalized completion
 
 ![ac-ispell-capitalcase](image/ac-ispell-capitalcase.png)
+
+
+## Installation
+
+`ac-ispell` is available on [MELPA](https://melpa.org/) and [MELPA stable](https://stable.melpa.org/)
+
+You can install `ac-ispell` with the following command.
+
+<kbd>M-x package-install [RET] ac-ispell [RET]</kbd>
 
 
 ## Requirements
@@ -94,3 +103,8 @@ Cache size.
 (add-hook 'git-commit-mode-hook 'ac-ispell-ac-setup)
 (add-hook 'mail-mode-hook 'ac-ispell-ac-setup)
 ```
+
+[melpa-link]: https://melpa.org/#/ac-ispell
+[melpa-stable-link]: https://stable.melpa.org/#/ac-ispell
+[melpa-badge]: https://melpa.org/packages/ac-ispell-badge.svg
+[melpa-stable-badge]: https://stable.melpa.org/packages/ac-ispell-badge.svg
